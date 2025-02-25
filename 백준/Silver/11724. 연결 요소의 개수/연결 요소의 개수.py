@@ -1,15 +1,8 @@
 import sys
 from collections import deque
+
 input = sys.stdin.readline
 
-'''
-6 5 -> 정점 갯수, 간선 갯수
-1 2
-2 5
-5 1
-3 4
-4 6
-'''
 n, m = map(int, input().split())
 lst = [[] for _ in range(n+1)]
 visited = [False] * (n+1)
@@ -20,17 +13,20 @@ for _ in range(m):
     lst[a].append(b)
     lst[b].append(a)
 
-
 def dfs(num):
-    global count
+    stack = [num]  # 스택에 시작 노드를 넣어줍니다.
     visited[num] = True
-    for i in lst[num]:
-        if not visited[i]:
-            dfs(i)
+    
+    while stack:
+        node = stack.pop()  # 스택에서 하나씩 꺼냄
+        for i in lst[node]:
+            if not visited[i]:
+                visited[i] = True
+                stack.append(i)
 
 for j in range(1, n+1):
-    if visited[j] == False:
+    if not visited[j]:
         dfs(j)
         count += 1
-        
+
 print(count)
