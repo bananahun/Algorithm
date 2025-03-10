@@ -5,17 +5,16 @@ T = int(input())
 
 for _ in range(T):
     n = int(input())
-    clothes = {}
-
+    dict = {}
     for _ in range(n):
-        item, category = input().split()
-        if category in clothes:
-            clothes[category] += 1
+        a, b = input().split()
+        if b in dict:
+            dict[b] += 1
         else:
-            clothes[category] = 1
+            dict[b] = 1
 
     result = 1
-    for count in clothes.values():
-        result *= (count + 1)
+    for i in dict.values():
+        result *= (i + 1)
 
     print(result - 1)
