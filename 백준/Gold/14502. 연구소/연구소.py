@@ -65,6 +65,7 @@ def countt(check_lst):
                 if check_lst[nx][ny] == 0:
                     check_lst[nx][ny] = 2
                     dq.append((nx, ny))
+                    # print(dq)
 
     cnt = 0
     for i in range(n):
@@ -81,15 +82,16 @@ for i in range(n):
             war.append([i, j])
 
 max_cnt = 0
+# print(list(combinations(war, 3)))
 for walls in combinations(war, 3):
     for x, y in walls:
         lst[x][y] = 1
-
+    # print(walls)
     check_lst = copy.deepcopy(lst)
+    # print(check_lst)
     result = countt(check_lst)
     if result > max_cnt:
         max_cnt = result
-
     for x, y in walls:
         lst[x][y] = 0
 
